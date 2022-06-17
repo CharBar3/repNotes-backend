@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const Workout = require('../models/workout')
+
+router.use
 
 // Index
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const workouts = await Workout.find({})
     } catch (error) {
@@ -12,7 +15,7 @@ app.get('/', async (req, res) => {
   })
   
   // Create
-  app.post('/new', async (req, res) => {
+  router.post('/new', async (req, res) => {
     try {
       const workout = await Workout.create(req.body)
       res.json(workout)
@@ -23,7 +26,7 @@ app.get('/', async (req, res) => {
   })
   
   // Update
-  app.put('/:id', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
       const workout = await Workout.findByIdAndUpdate(req.params.id, req.body)
       res.json(workout)
@@ -34,7 +37,7 @@ app.get('/', async (req, res) => {
   })
   
   // Delete
-  app.delete('/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       const workout = await Workout.findByIdAndDelete(req.params.id, req.body)
       res.json(workout)
@@ -43,3 +46,5 @@ app.get('/', async (req, res) => {
         res.json({error: 'something went wrong - check console'})
     }
   })
+
+  module.exports = router

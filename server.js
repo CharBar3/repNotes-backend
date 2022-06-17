@@ -2,8 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
-const Workout = require('../backend/models/workout.js')
+const Workout = require('./models/workout')
 const cors = require('cors')
+
 
 require('dotenv').config()
 const {PORT, MONGODB_URL} = process.env
