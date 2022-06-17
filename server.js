@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
+const Workout = require('../backend/models/workout.js')
+const cors = require('cors')
 
 require('dotenv').config()
 const {PORT, MONGODB_URL} = process.env
@@ -14,23 +16,18 @@ mongoose.connection
 .on('error', (error) => console.log(`error connecting to MongoDB: ${error}`))
 
 
-// Index
+// Mount Middleware 
+app.use(cors())
+app.use(morgan('dev'))
+app.use(express.json()) 
+
+// Routes
+const repnotes = require('./controller/routes')
+app.use('/repnotes', repnotes)
+
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.redirect('/repnotes')
 })
-
-// Create
-app.post('/workout', async (req, res) => {
-  try {
-    
-  } catch (error) {
-    
-  }
-})
-
-// Update
-
-// Delete
 
 app.listen(PORT, () => {
   console.log(`Example app listening on PORT ${PORT}`)
