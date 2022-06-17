@@ -27,6 +27,7 @@ const repnotes = require('./controller/routes')
 app.use('/repnotes', repnotes)
 
 app.get('/', (req, res) => {
+  // res.send('home')
   res.redirect('/repnotes')
 })
 
