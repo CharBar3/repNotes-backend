@@ -4,7 +4,6 @@ const Workout = require('../models/workout')
 
 // Index
 router.get('/', async (req, res) => {
-    console.log('you made it here')
     try {
       const workouts = await Workout.find({})
       res.json(workouts)

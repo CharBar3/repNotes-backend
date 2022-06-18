@@ -26,6 +26,16 @@ app.use(express.json())
 const repnotes = require('./controller/routes')
 app.use('/repnotes', repnotes)
 
+// Seed Route
+
+const seedData = require('./models/seedData')
+app.get('/seed', (req, res) => {
+  Workout.deleteMany({}, (error, allWorkouts) => {})
+  Workout.create(seedData, (error, data) => {
+    res.redirect('/')
+  })
+})
+
 app.get('/', (req, res) => {
   // res.send('home')
   res.redirect('/repnotes')
